@@ -1,12 +1,12 @@
 /* feedreader.js
  *
  * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
+ * all of the tests that will be run against the application.
  */
 
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
+/* All of the tests are placed within the $() function,
+ * since some of these tests may require DOM elements. This
+ * ensures that the tests don't run until the DOM is ready.
  */
 $(function() {
   /* Test suite: test the RSS feeds definitions, i.e. the
@@ -87,12 +87,33 @@ $(function() {
     });
   });
 
-  /* Test suite: test that the new feed's contain actually changes after
+  /* Test suite: test that the new feed's contents actually change after
    * the loadFeed function finishes executing. */
   describe('New Feed Selection', function() {
-    /* TODO: Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
+    let CONTAINER = document.querySelector('.feed');
+    let firstFeedContent,
+      secondFeedContent;
+
+    /* Make an asynchronous request for loadFeed() to execute and finish
+     * twice before testing the different contents. */
+    beforeEach(function(done) {
+      /* Call the loadFeed function twice, and save the contents of the
+       * .feed container div after each execution completes. */
+      loadFeed(1, function() {
+        firstFeedContent = CONTAINER.innerHTML;
+        loadFeed(0, function() {
+          secondFeedContent = CONTAINER.innerHTML;
+          done();
+        });
+      });
+    });
+
+    /* Test: After loadFeed() finishes executing twice, check if the contents
+     * of the .feed container div from the first execution of loadFeed is not
+     * equal to the second execution of the loadFeed function. */
+    it('changes content when the loadFeed function finishes executing', function(done) {
+      expect(firstFeedContent).not.toEqual(secondFeedContent);
+      done();
+    });
   });
 }());
