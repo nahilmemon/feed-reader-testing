@@ -116,4 +116,47 @@ $(function() {
       done();
     });
   });
+
+  /* Test suite: test that all the links on the page have text in them,
+   * or an aria-label. This is necessary for users using screen readers
+   * to be able to navigate the page smoothly. */
+  describe('Links', function() {
+
+    /* Given an array of links, check if each link in the array
+     * actually has an text inside of it. */
+    function checkIfLinksInArrayHaveInnerText(arrayOfLinks) {
+      for (link of arrayOfLinks) {
+        // Make sure that the link's text exists
+        expect(link.innerText).toBeDefined();
+        // Make sure that the link's text is more than 0 characters long
+        expect(link.innerText.length).toBeGreaterThan(0);
+        // Make sure that the link's text isn't just a space
+        expect(link.innerText).not.toBe(' ');
+        // If there is no inner text in the link, then check for an aria-label
+        if (link.innerText === null ||
+          link.innerText.length <= 0 ||
+          link.innerText === ' ') {
+            expect(link.getAttribute('aria-label')).not.toBe(null);
+        }
+      };
+    }
+
+    /* Test: Make sure that the links in the header have text in them. */
+    it('in the header have text', function() {
+      const HEADER_LINKS = document.querySelector('.header').querySelectorAll('a');
+      checkIfLinksInArrayHaveInnerText(HEADER_LINKS);
+    });
+
+    /* Test: Make sure that the links in the side menu have text in them. */
+    it('in the slide menu have text', function() {
+      const SLIDE_MENU_LINKS = document.querySelector('.slide-menu').querySelectorAll('a');
+      checkIfLinksInArrayHaveInnerText(SLIDE_MENU_LINKS);
+    });
+
+    /* Test: Make sure that the links in the feed have text in them. */
+    it('in the feed have text', function() {
+      const FEED_LINKS = document.querySelector('.feed').querySelectorAll('a');
+      checkIfLinksInArrayHaveInnerText(FEED_LINKS);
+    });
+  });
 }());

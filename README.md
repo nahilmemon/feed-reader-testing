@@ -5,6 +5,7 @@
 * [Description](#description)
 * [How to Run the Web App](#how-to-run-the-web-app)
 * [Minimum Requirements](#minimum-requirements)
+* [Extra Features](#extra-features)
 * [Resources Used](#resources-used)
 
 ## Description
@@ -34,6 +35,14 @@ The minimum requirements of this project involved implementing the following tes
   * test that the initial entries array isn't empty after the loadFeed function (an asynchronous function) finishes executing
 * New Feed Selection test suite:
   * test that the new feed's contents actually change after each execution of the loadFeed function (an asynchronous function)
+
+## Extra Features
+
+Extra features that were added to the web app testing included:
+* Links test suite to check if the links on the page are all accessible in terms of having either descriptive text in the links or having an aria-label data attribute
+  * test accessibility of the links in the header section
+  * test accessibility of the links in the slide menu section
+  * test accessibility of the links in the feed section
 
 ## Resources Used
 
