@@ -25,9 +25,9 @@ $(function() {
      * has a defined URL and that this URL is not empty.
      */
     it('URLs are defined', function() {
-      for (const feed of allFeeds) {
-        expect(feed['url']).toBeDefined();
-        expect(feed['url'].length).not.toBe(0);
+      for (const FEED of allFeeds) {
+        expect(FEED['url']).toBeDefined();
+        expect(FEED['url'].length).not.toBe(0);
       }
     });
 
@@ -35,9 +35,9 @@ $(function() {
      * has a defined name and that this name is not empty.
      */
     it('names are defined', function() {
-      for (const feed of allFeeds) {
-        expect(feed['name']).toBeDefined();
-        expect(feed['name'].length).not.toBe(0);
+      for (const FEED of allFeeds) {
+        expect(FEED['name']).toBeDefined();
+        expect(FEED['name'].length).not.toBe(0);
       }
     });
   });
