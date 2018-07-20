@@ -125,14 +125,9 @@ $(function() {
      * actually has an text inside of it. */
     function checkIfLinksInArrayHaveInnerText(arrayOfLinks) {
       for (link of arrayOfLinks) {
-        // Make sure that the link's text exists
-        expect(link.innerText).toBeDefined();
-        // Make sure that the link's text is more than 0 characters long
-        expect(link.innerText.length).toBeGreaterThan(0);
-        // Make sure that the link's text isn't just a space
-        expect(link.innerText).not.toBe(' ');
         // If there is no inner text in the link, then check for an aria-label
-        if (link.innerText === null ||
+        if (link.innerText === undefined ||
+          link.innerText === null ||
           link.innerText.length <= 0 ||
           link.innerText === ' ') {
             expect(link.getAttribute('aria-label')).not.toBe(null);
