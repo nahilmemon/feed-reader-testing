@@ -43,7 +43,13 @@ Extra features that were added to the web app testing included:
   * test accessibility of the links in the header section
   * test accessibility of the links in the slide menu section
   * test accessibility of the links in the feed section
+* Color contrast test suite to check if the color contrast of page elements pass the WCAG 2.0 guidelines
+  * test color contrast of the header
+  * test color contrast of the menu icon
+  * test color contrast of the slide menu
+  * test color contrast of the feed
 
 ## Resources Used
 
 * [Jasmine Library](https://jasmine.github.io/2.1/introduction.html)
+* [Accessibility Color Contrast Guidelines](https://www.w3.org/TR/WCAG20/#relativeluminancedef)
